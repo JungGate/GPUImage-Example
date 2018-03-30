@@ -7,36 +7,58 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class EditTableViewController: UITableViewController {
-
+    let disposeBag = DisposeBag()
+    @IBOutlet weak var filterIdTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.tableView.rx.itemSelected.subscribe(onNext: { [unowned self] indexPath in
+            print("indexPath \(indexPath)")
+            if indexPath.row == 0{
+                UserDefaults.standard.removeObject(forKey: "filter_file_id")
+            }
+            else if indexPath.row == 1{
+                if self.filterIdTextField.text?.isEmpty ?? true{
+                    self.tableView.selectRow(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+                    Toast.showToast(title: "No filter id.")
+                }
+                else{
+                    UserDefaults.standard.setValue(self.filterIdTextField.text!, forKey: "filter_file_id")
+                }
+                
+            }
+            
+            UserDefaults.standard.synchronize()
+        }).disposed(by: disposeBag)
+        
+        DispatchQueue.main.async {
+            if let driveId = UserDefaults.standard.string(forKey: "filter_file_id"){
+                self.filterIdTextField.text = driveId
+                self.tableView.selectRow(at: IndexPath(item: 1, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+            }
+            else{
+                self.tableView.selectRow(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if tableView.indexPathForSelectedRow?.row ?? 0 == 1 {
+            GoogleDownloader.downlaod(driveFileId: self.filterIdTextField.text!)
+        }
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
+    //MARK: - Table view data source
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

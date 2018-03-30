@@ -13,9 +13,7 @@ import Toast
 
 class GoogleDownloader: NSObject {
     static func downlaod(driveFileId:String){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let view = appDelegate.window?.rootViewController?.view
-        view?.makeToast("Image Download Started")
+        Toast.showToast(title:"Image Download Started")
         
         let filePath = "\(NSHomeDirectory())/Documents/\(driveFileId)"
         Alamofire.request("https://drive.google.com/uc?id=\(driveFileId)").responseImage { response in
@@ -27,15 +25,14 @@ class GoogleDownloader: NSObject {
                 
                 print("filePath \(filePath)")
                 try! UIImagePNGRepresentation(image)?.write(to: URL(fileURLWithPath:filePath))
-                
-                view?.makeToast("Image Download Successful.\n\(driveFileId)")
+                Toast.showToast(title:"Image Download Successful.\n\(driveFileId)")
             }
             else{
-                view?.makeToast("Image Download Failed.")
+                Toast.showToast(title:"Image Download Failed.")
             }
         }
         
-        UserDefaults.standard.set(filePath, forKey: "filter_path")
+        UserDefaults.standard.set(driveFileId, forKey: "filter_file_id")
         UserDefaults.standard.synchronize()
 
     }

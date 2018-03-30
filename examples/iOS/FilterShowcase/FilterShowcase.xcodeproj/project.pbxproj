@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1449CB6E206CCE3000F005A6 /* GoogleDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB6D206CCE3000F005A6 /* GoogleDownloader.swift */; };
 		1449CB73206CD12300F005A6 /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB72206CD12300F005A6 /* EditTableViewController.swift */; };
+		1449CB7D206DD53700F005A6 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB7C206DD53700F005A6 /* Toast.swift */; };
 		14FF91BC202C496E00E94AE7 /* FilterMe_Part2_ProcessedLUT.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FF91BB202C496D00E94AE7 /* FilterMe_Part2_ProcessedLUT.png */; };
 		14FF91BE202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FF91BD202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png */; };
 		71866FB2E13F6533B74FB70C /* Pods_FilterShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6400A2BC1B68A54277E9180 /* Pods_FilterShowcase.framework */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		1449CB6D206CCE3000F005A6 /* GoogleDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDownloader.swift; sourceTree = "<group>"; };
 		1449CB72206CD12300F005A6 /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		1449CB7C206DD53700F005A6 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		14FF91BB202C496D00E94AE7 /* FilterMe_Part2_ProcessedLUT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterMe_Part2_ProcessedLUT.png; sourceTree = "<group>"; };
 		14FF91BD202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterMe_Part2_OriginalLUT_A.png; sourceTree = "<group>"; };
 		BB9A4AA4CAAA1C5F8DB31227 /* Pods-FilterShowcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterShowcase.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilterShowcase/Pods-FilterShowcase.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				BC0037C0195CA11B00B9D651 /* FilterDisplayViewController.swift */,
 				1449CB6D206CCE3000F005A6 /* GoogleDownloader.swift */,
 				1449CB72206CD12300F005A6 /* EditTableViewController.swift */,
+				1449CB7C206DD53700F005A6 /* Toast.swift */,
 				BC0037C2195CA11B00B9D651 /* Main.storyboard */,
 				BCFB07881CBF361A009B2333 /* LaunchScreen.storyboard */,
 			);
@@ -398,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC0037C1195CA11B00B9D651 /* FilterDisplayViewController.swift in Sources */,
+				1449CB7D206DD53700F005A6 /* Toast.swift in Sources */,
 				1449CB6E206CCE3000F005A6 /* GoogleDownloader.swift in Sources */,
 				BC0037BF195CA11B00B9D651 /* FilterListViewController.swift in Sources */,
 				1449CB73206CD12300F005A6 /* EditTableViewController.swift in Sources */,

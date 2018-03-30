@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
-        if let driveId = UserDefaults.standard.string(forKey: "drive_id"){
+        if let driveId = UserDefaults.standard.string(forKey: "filter_file_id"){
             GoogleDownloader.downlaod(driveFileId: driveId)
         }
         

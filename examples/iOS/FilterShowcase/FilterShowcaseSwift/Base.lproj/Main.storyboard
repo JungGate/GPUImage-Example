@@ -75,7 +75,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Google Drive Image ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXC-9R-wcP">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1R3v0KG2tIBYyc4zqvURQUQGjt6M8CgJU" borderStyle="roundedRect" placeholder="Insert Google Drive Image ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aXC-9R-wcP">
                                                     <rect key="frame" x="16" y="36.5" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -101,6 +101,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="lai-le-FCp"/>
+                    <connections>
+                        <outlet property="filterIdTextField" destination="aXC-9R-wcP" id="aQ4-Tq-egv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNJ-Sr-cqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

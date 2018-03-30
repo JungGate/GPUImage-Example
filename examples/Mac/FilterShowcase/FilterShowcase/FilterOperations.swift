@@ -11,12 +11,20 @@ let filterOperations: Array<FilterOperationInterface> = [
         titleName:"Miss Etikate (Lookup)",
         sliderConfiguration:.disabled,
         sliderUpdateCallback: nil,
-//        filterOperationType:.singleInput
+        //        filterOperationType:.singleInput
         filterOperationType:.custom(filterSetupFunction:{(camera, filter, outputView) in
             let castFilter = filter as! MissEtikateFilter
-            let path = UserDefaults.standard.string(forKey: "filter_path")
-            let image = UIImage(contentsOfFile: path!)!
-            let maskImage = PictureInput(image: image)
+            var image:UIImage?
+            if let filterId = UserDefaults.standard.string(forKey: "filter_file_id"){
+                let filePath = "\(NSHomeDirectory())/Documents/\(filterId)"
+                image = UIImage(contentsOfFile: filePath)
+                Toast.showToast(title:"Set Custom Filter\n\(filterId)")
+            }
+            else{
+                image = UIImage(named:"FilterMe_Part2_OriginalLUT_A")
+                Toast.showToast(title:"Set Default Filter")
+            }
+            let maskImage = PictureInput(image: image!)
             castFilter.lookupImage = maskImage
             maskImage.processImage()
             camera --> castFilter --> outputView
