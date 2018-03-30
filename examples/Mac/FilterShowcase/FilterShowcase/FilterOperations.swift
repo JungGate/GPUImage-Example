@@ -8,7 +8,7 @@ let filterOperations: Array<FilterOperationInterface> = [
     FilterOperation(
         filter:{MissEtikateFilter()},
         listName:"Miss Etikate (Lookup)",
-        titleName:"Miss Etikate (Lookup)",
+        titleName:"(Miss Etikate (Lookup)",
         sliderConfiguration:.disabled,
         sliderUpdateCallback: nil,
         //        filterOperationType:.singleInput

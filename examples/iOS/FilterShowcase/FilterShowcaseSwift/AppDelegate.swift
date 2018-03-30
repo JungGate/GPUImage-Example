@@ -1,12 +1,16 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import Fabric
+import Crashlytics
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
 
-    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        Fabric.with([Crashlytics.self])
         
         if let driveId = UserDefaults.standard.string(forKey: "filter_file_id"){
             GoogleDownloader.downlaod(driveFileId: driveId)

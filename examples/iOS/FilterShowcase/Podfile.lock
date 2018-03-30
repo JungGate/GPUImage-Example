@@ -2,6 +2,9 @@ PODS:
   - Alamofire (4.6.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - Fabric (1.7.2)
   - RxCocoa (4.1.1):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.1)
@@ -9,6 +12,8 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.3)
+  - Crashlytics
+  - Fabric
   - RxCocoa
   - RxSwift
   - Toast (~> 4.0.0)
@@ -16,10 +21,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
   RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 2799a8b7dedf65d934511e40385a27294669b9f8
+PODFILE CHECKSUM: 32bfecc0f24f53900458086d8d275ce787598a73
 
 COCOAPODS: 1.4.0
