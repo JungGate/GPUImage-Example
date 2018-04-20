@@ -34,6 +34,5 @@ class GoogleDownloader: NSObject {
         
         UserDefaults.standard.set(driveFileId, forKey: "filter_file_id")
         UserDefaults.standard.synchronize()
-
     }
 }

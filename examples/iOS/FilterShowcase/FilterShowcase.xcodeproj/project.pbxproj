@@ -10,6 +10,8 @@
 		1449CB6E206CCE3000F005A6 /* GoogleDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB6D206CCE3000F005A6 /* GoogleDownloader.swift */; };
 		1449CB73206CD12300F005A6 /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB72206CD12300F005A6 /* EditTableViewController.swift */; };
 		1449CB7D206DD53700F005A6 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449CB7C206DD53700F005A6 /* Toast.swift */; };
+		14B261B02089A78000EFDF61 /* icons8-switch-camera-52.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B261AC2089A78000EFDF61 /* icons8-switch-camera-52.png */; };
+		14B261B22089A95E00EFDF61 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B261B12089A95E00EFDF61 /* white.png */; };
 		14FF91BC202C496E00E94AE7 /* FilterMe_Part2_ProcessedLUT.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FF91BB202C496D00E94AE7 /* FilterMe_Part2_ProcessedLUT.png */; };
 		14FF91BE202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FF91BD202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png */; };
 		71866FB2E13F6533B74FB70C /* Pods_FilterShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6400A2BC1B68A54277E9180 /* Pods_FilterShowcase.framework */; };
@@ -85,6 +87,8 @@
 		1449CB6D206CCE3000F005A6 /* GoogleDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDownloader.swift; sourceTree = "<group>"; };
 		1449CB72206CD12300F005A6 /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		1449CB7C206DD53700F005A6 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		14B261AC2089A78000EFDF61 /* icons8-switch-camera-52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-switch-camera-52.png"; sourceTree = "<group>"; };
+		14B261B12089A95E00EFDF61 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		14FF91BB202C496D00E94AE7 /* FilterMe_Part2_ProcessedLUT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterMe_Part2_ProcessedLUT.png; sourceTree = "<group>"; };
 		14FF91BD202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterMe_Part2_OriginalLUT_A.png; sourceTree = "<group>"; };
 		BB9A4AA4CAAA1C5F8DB31227 /* Pods-FilterShowcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterShowcase.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilterShowcase/Pods-FilterShowcase.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 		BC0037BA195CA11B00B9D651 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14B261B12089A95E00EFDF61 /* white.png */,
+				14B261AC2089A78000EFDF61 /* icons8-switch-camera-52.png */,
 				BCFB059D1CBF1AE5009B2333 /* lookup_amatorka.png */,
 				14FF91BB202C496D00E94AE7 /* FilterMe_Part2_ProcessedLUT.png */,
 				14FF91BD202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png */,
@@ -254,7 +260,7 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = AL9L4NE9HL;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -325,10 +331,12 @@
 				BCFB059B1CBF1ACA009B2333 /* Mask.png in Resources */,
 				BCFB05981CBF1ABD009B2333 /* Assets-iOS.xcassets in Resources */,
 				BCFB059C1CBF1ACA009B2333 /* WID-small.jpg in Resources */,
+				14B261B22089A95E00EFDF61 /* white.png in Resources */,
 				14FF91BE202C4E3800E94AE7 /* FilterMe_Part2_OriginalLUT_A.png in Resources */,
 				BC0037C4195CA11B00B9D651 /* Main.storyboard in Resources */,
 				BCFB05A41CBF1AE5009B2333 /* lookup_soft_elegance_2.png in Resources */,
 				BCFB05A21CBF1AE5009B2333 /* lookup_miss_etikate.png in Resources */,
+				14B261B02089A78000EFDF61 /* icons8-switch-camera-52.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,14 +568,15 @@
 			baseConfigurationReference = E14B868C0224BFB928F18624 /* Pods-FilterShowcase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = FilterShowcaseSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuminternet.gpuimage;
 				PRODUCT_NAME = FilterShowcase;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "GPUImage Development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -577,15 +586,15 @@
 			baseConfigurationReference = BB9A4AA4CAAA1C5F8DB31227 /* Pods-FilterShowcase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = FilterShowcaseSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuminternet.gpuimage;
 				PRODUCT_NAME = FilterShowcase;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "GPUImage Adhoc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

@@ -14,5 +14,5 @@ class Toast: NSObject {
         let view = appDelegate.window?.rootViewController?.view
         view?.makeToast(title)
     }
-
 }
+

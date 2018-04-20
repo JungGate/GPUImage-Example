@@ -12,7 +12,6 @@ import RxSwift
 
 class EditTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
-    @IBOutlet weak var filterIdTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,98 +19,54 @@ class EditTableViewController: UITableViewController {
         self.tableView.rx.itemSelected.subscribe(onNext: { [unowned self] indexPath in
             print("indexPath \(indexPath)")
             if indexPath.row == 0{
-                UserDefaults.standard.removeObject(forKey: "filter_file_id")
+                UserDefaults.standard.removeObject(forKey: "selected_filter_id")
+                UserDefaults.standard.removeObject(forKey: "selected_filter_no")
             }
-            else if indexPath.row == 1{
-                if self.filterIdTextField.text?.isEmpty ?? true{
+            else if let selectedCell = self.tableView.cellForRow(at: indexPath) as? EditCell{
+                if selectedCell.filterIdTextField.text?.isEmpty ?? true{
                     self.tableView.selectRow(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
                     Toast.showToast(title: "No filter id.")
                 }
                 else{
-                    UserDefaults.standard.setValue(self.filterIdTextField.text!, forKey: "filter_file_id")
+                    UserDefaults.standard.setValue(selectedCell.filterIdTextField.text!, forKey: "selected_filter_id")
+                    UserDefaults.standard.setValue(String(indexPath.row), forKey: "selected_filter_no")
+                    UserDefaults.standard.synchronize()
+                    GoogleDownloader.downlaod(driveFileId: selectedCell.filterIdTextField.text!)
                 }
-                
             }
-            
-            UserDefaults.standard.synchronize()
         }).disposed(by: disposeBag)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            if let driveId = UserDefaults.standard.string(forKey: "filter_file_id"){
-                self.filterIdTextField.text = driveId
-                self.tableView.selectRow(at: IndexPath(item: 1, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+            if let filterNo = UserDefaults.standard.string(forKey: "selected_filter_no"), let no = Int(filterNo){
+                self.tableView.selectRow(at: IndexPath(item: no, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
             }
             else{
                 self.tableView.selectRow(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
             }
         }
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        if tableView.indexPathForSelectedRow?.row ?? 0 == 1 {
-            GoogleDownloader.downlaod(driveFileId: self.filterIdTextField.text!)
+
+class EditCell: UITableViewCell, UITextFieldDelegate{
+    @IBOutlet weak var filterIdTextField: UITextField!
+    var filterNo:Int = 0{
+        didSet{
+            if let filterId = UserDefaults.standard.string(forKey: "filter_file_no_\(filterNo)"){
+                filterIdTextField.text = filterId
+            }
         }
     }
-
-    //MARK: - Table view data source
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func awakeFromNib() {
+        filterNo = filterIdTextField.tag
+        filterIdTextField.delegate = self
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UserDefaults.standard.set(textField.text, forKey: "filter_file_no_\(filterNo)")
+        UserDefaults.standard.synchronize()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

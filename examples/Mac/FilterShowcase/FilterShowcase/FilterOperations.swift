@@ -15,10 +15,10 @@ let filterOperations: Array<FilterOperationInterface> = [
         filterOperationType:.custom(filterSetupFunction:{(camera, filter, outputView) in
             let castFilter = filter as! MissEtikateFilter
             var image:UIImage?
-            if let filterId = UserDefaults.standard.string(forKey: "filter_file_id"){
+            if let filterId = UserDefaults.standard.string(forKey: "selected_filter_id"), let filterNo = UserDefaults.standard.string(forKey: "selected_filter_no"){
                 let filePath = "\(NSHomeDirectory())/Documents/\(filterId)"
                 image = UIImage(contentsOfFile: filePath)
-                Toast.showToast(title:"Set Custom Filter\n\(filterId)")
+                Toast.showToast(title:"Set Custom Filter\(filterNo)\n\(filterId)")
             }
             else{
                 image = UIImage(named:"FilterMe_Part2_OriginalLUT_A")

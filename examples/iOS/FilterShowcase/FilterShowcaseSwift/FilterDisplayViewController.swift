@@ -9,13 +9,13 @@ class FilterDisplayViewController: UIViewController, UISplitViewControllerDelega
     @IBOutlet var filterSlider: UISlider?
     @IBOutlet var filterView: RenderView?
     
-    let videoCamera:Camera?
+    var videoCamera:Camera?
     var blendImage:PictureInput?
 
     required init(coder aDecoder: NSCoder)
     {
         do {
-            videoCamera = try Camera(sessionPreset:AVCaptureSessionPreset640x480, location:.backFacing)
+            videoCamera = try Camera(sessionPreset:AVCaptureSessionPreset640x480, location:.frontFacing)
             videoCamera!.runBenchmark = true
         } catch {
             videoCamera = nil
@@ -103,5 +103,38 @@ class FilterDisplayViewController: UIViewController, UISplitViewControllerDelega
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func touchCameraSwitch(_ sender: UIButton) {
+        if let videoCamera = videoCamera {
+            videoCamera.stopCapture()
+            videoCamera.removeAllTargets()
+            blendImage?.removeAllTargets()
+        }
+        
+        if sender.isSelected{
+            videoCamera = try? Camera(sessionPreset:AVCaptureSessionPreset640x480, location:.frontFacing)
+        }
+        else{
+            videoCamera = try? Camera(sessionPreset:AVCaptureSessionPreset640x480, location:.backFacing)
+        }
+        self.configureView()
+        
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func touchShutter(_ sender: UIButton) {
+        
+    }
 }
 
+
+extension UIButton {
+    @IBInspectable var cornerRadiusHalf:Bool{
+        set{
+            self.clipsToBounds = true
+            self.layer.cornerRadius = self.frame.size.width/2
+        }
+        get{
+            return false
+        }
+    }
+}
