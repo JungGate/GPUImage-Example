@@ -122,8 +122,34 @@ class FilterDisplayViewController: UIViewController, UISplitViewControllerDelega
     }
     
     @IBAction func touchShutter(_ sender: UIButton) {
+        let date = NSDate()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd_hhmmss"
+        let dateString = dateFormatter.string(from:date as Date)
         
+        let savePath = "\(NSHomeDirectory())/Documents/\(dateString).png"
+        let saveUrl = URL(fileURLWithPath: savePath)
+        videoCamera?.saveNextFrameToURL(saveUrl, format: PictureFileFormat.png)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1) + .milliseconds(0)) { [unowned self] in
+            let image = UIImage(contentsOfFile: savePath)!
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
     }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+
 }
 
 

@@ -43,6 +43,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera image processing</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>사진첩 접근</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
