@@ -69,4 +69,9 @@ class EditCell: UITableViewCell, UITextFieldDelegate{
         UserDefaults.standard.set(textField.text, forKey: "filter_file_no_\(filterNo)")
         UserDefaults.standard.synchronize()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

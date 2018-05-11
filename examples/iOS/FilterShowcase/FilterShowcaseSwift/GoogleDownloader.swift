@@ -16,7 +16,7 @@ class GoogleDownloader: NSObject {
         Toast.showToast(title:"Image Download Started")
         
         let filePath = "\(NSHomeDirectory())/Documents/\(driveFileId)"
-        Alamofire.request("https://drive.google.com/uc?id=\(driveFileId)").responseImage { response in
+        Alamofire.request("https://drive.google.com/uc?export=download&id=\(driveFileId)").responseImage { response in
             debugPrint(response)
             debugPrint(response.result)
        

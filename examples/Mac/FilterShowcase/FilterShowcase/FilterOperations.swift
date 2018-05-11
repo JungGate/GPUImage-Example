@@ -18,16 +18,24 @@ let filterOperations: Array<FilterOperationInterface> = [
             if let filterId = UserDefaults.standard.string(forKey: "selected_filter_id"), let filterNo = UserDefaults.standard.string(forKey: "selected_filter_no"){
                 let filePath = "\(NSHomeDirectory())/Documents/\(filterId)"
                 image = UIImage(contentsOfFile: filePath)
-                Toast.showToast(title:"Set Custom Filter\(filterNo)\n\(filterId)")
+                if let image = image{
+                    let maskImage = PictureInput(image: image)
+                    castFilter.lookupImage = maskImage
+                    maskImage.processImage()
+                    camera --> castFilter --> outputView
+                    Toast.showToast(title:"Set Custom Filter\(filterNo)\n\(filterId)")
+                }
+                else{
+                    Toast.showToast(title:"Not Found Filter Image")
+                }
             }
-            else{
-                image = UIImage(named:"FilterMe_Part2_OriginalLUT_A")
+            else if let image = UIImage(named:"FilterMe_Part2_OriginalLUT_A"){
+                let maskImage = PictureInput(image: image)
+                castFilter.lookupImage = maskImage
+                maskImage.processImage()
+                camera --> castFilter --> outputView
                 Toast.showToast(title:"Set Default Filter")
             }
-            let maskImage = PictureInput(image: image!)
-            castFilter.lookupImage = maskImage
-            maskImage.processImage()
-            camera --> castFilter --> outputView
             return nil
         })
     ),
